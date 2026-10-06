@@ -51,8 +51,8 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const text = responseEl.value.trim();
-    const visibility = document.querySelector('input[name="visibility"]:checked')?.value;
-    if (!text || !visibility) return;
+    const visibility = "public";
+    if (!text) return;
 
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;

@@ -33,7 +33,6 @@
       const answered = !!r.response_text;
       if (f === "answered" && !answered) return false;
       if (f === "pending" && answered) return false;
-      if (f === "anonymous" && r.visibility !== "anonymous") return false;
       const hay = `${r.full_name ?? ""} ${r.response_text ?? ""}`.toLocaleLowerCase("tr-TR");
       return !q || hay.includes(q);
     });
@@ -43,7 +42,6 @@
     tbody.innerHTML = rows.map(r => `<tr>
       <td><strong>${esc(r.full_name)}</strong></td>
       <td>${r.response_text ? esc(r.response_text) : '<span style="color:#8a96a3">Henüz cevap yok</span>'}</td>
-      <td>${r.response_text ? (r.visibility === "anonymous" ? "Anonim" : "İsimle") : "—"}</td>
       <td>${fmtDate(r.submitted_at)}</td>
     </tr>`).join("");
   }
@@ -97,8 +95,8 @@
     const rows = visibleRows();
     const quote = v => `"${String(v ?? "").replaceAll('"','""')}"`;
     const csv = "\ufeff" + [
-      ["Üye","Görüş","Paylaşım","Gönderim"].map(quote).join(";"),
-      ...rows.map(r => [r.full_name,r.response_text,r.visibility === "anonymous" ? "Anonim" : (r.response_text ? "İsimle" : ""),r.submitted_at ? fmtDate(r.submitted_at) : ""].map(quote).join(";"))
+      ["Üye","Görüş","Gönderim"].map(quote).join(";"),
+      ...rows.map(r => [r.full_name,r.response_text,r.submitted_at ? fmtDate(r.submitted_at) : ""].map(quote).join(";"))
     ].join("\n");
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"}));
