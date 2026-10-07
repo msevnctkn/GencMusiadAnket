@@ -27,3 +27,58 @@ textarea{min-height:210px;resize:vertical;line-height:1.55}textarea:focus,input:
 .link-cell{min-width:330px}.link-cell a{display:inline-block;max-width:290px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}
 .copy-link{margin-left:8px;border:1px solid #d9e0e7;background:#fff;border-radius:8px;padding:6px 9px;cursor:pointer;font:inherit;font-size:12px}
 #actionMsg{min-height:20px;margin:8px 0}.toolbar{flex-wrap:wrap}
+
+/* Admin panel - full width layout */
+.admin-wrap{
+  width:min(96vw, 1800px) !important;
+  max-width:none !important;
+  margin:0 auto !important;
+  padding:32px 0 48px !important;
+}
+#panel{
+  width:100% !important;
+  max-width:none !important;
+}
+.admin-head{
+  width:100% !important;
+}
+.stats{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+.admin-card{
+  width:100% !important;
+  max-width:none !important;
+  box-sizing:border-box !important;
+}
+.toolbar{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:minmax(260px,1fr) 220px auto auto !important;
+  gap:10px !important;
+  align-items:center !important;
+}
+.table-wrap{
+  width:100% !important;
+  overflow-x:auto !important;
+}
+.table-wrap table{
+  width:100% !important;
+  min-width:1100px !important;
+  table-layout:auto !important;
+}
+.table-wrap th:nth-child(1),.table-wrap td:nth-child(1){width:48px}
+.table-wrap th:nth-child(2),.table-wrap td:nth-child(2){width:190px}
+.table-wrap th:nth-child(3),.table-wrap td:nth-child(3){min-width:360px}
+.table-wrap th:nth-child(4),.table-wrap td:nth-child(4){width:160px}
+.table-wrap th:nth-child(5),.table-wrap td:nth-child(5){min-width:430px}
+.link-cell{min-width:430px !important}
+.link-cell a{max-width:330px !important}
+
+@media (max-width:900px){
+  .admin-wrap{width:94vw !important;padding:20px 0 36px !important}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .toolbar{grid-template-columns:1fr !important}
+}
