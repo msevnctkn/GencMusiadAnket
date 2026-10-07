@@ -1,4 +1,65 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Genç MÜSİAD | Yönetim</title><link rel="stylesheet" href="styles.css"></head><body>
-<main class="admin-wrap"><section id="loginCard" class="admin-card login"><div class="logohead"><img src="genc-musiad-logo.svg" alt="Genç MÜSİAD"></div><div class="eyebrow">Yönetim Paneli</div><h1>Yönetici girişi</h1><p class="lead">Anket yanıtlarını ve katılım durumunu görüntülemek için giriş yapın.</p><div class="field"><input id="email" type="email" placeholder="E-posta"></div><div class="field"><input id="password" type="password" placeholder="Şifre"></div><button id="login" class="btn full">Giriş Yap</button><div id="loginMsg" class="hint"></div></section>
-<section id="panel" class="admin-card hidden"><div class="top"><div><img class="admin-logo" src="genc-musiad-logo.svg" alt="Genç MÜSİAD"><h1>Anket Yönetimi</h1></div><button id="logout" class="btn secondary">Çıkış</button></div><div class="grid"><div class="stat"><b id="total">0</b>Toplam Üye</div><div class="stat"><b id="answered">0</b>Cevaplayan</div><div class="stat"><b id="pending">0</b>Cevaplamayan</div><div class="stat"><b id="rate">0%</b>Katılım Oranı</div></div><div class="controls"><input id="search" placeholder="Üye veya görüş ara"><select id="filter"><option value="all">Tüm üyeler</option><option value="answered">Cevaplayanlar</option><option value="pending">Cevaplamayanlar</option></select><button id="csv" class="btn secondary">CSV İndir</button></div><div class="tablebox"><table><thead><tr><th>Üye</th><th>Görüş</th><th>Gönderim</th></tr></thead><tbody id="rows"></tbody></table></div></section></main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="admin.js"></script></body></html>
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Genç MÜSİAD | Yönetici Paneli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="admin-wrap">
+  <section id="loginCard" class="card admin-login">
+    <img class="admin-logo" src="genc-musiad-logo.svg" alt="Genç MÜSİAD">
+    <div class="eyebrow">Yönetici Paneli</div>
+    <h1>Giriş yapın</h1>
+    <div class="field"><label class="title" for="email">E-posta</label><input id="email" type="email" autocomplete="username"></div>
+    <div class="field"><label class="title" for="password">Şifre</label><input id="password" type="password" autocomplete="current-password"></div>
+    <button id="login" class="btn full">Giriş Yap</button>
+    <div id="loginMsg" class="hint"></div>
+  </section>
+
+  <section id="panel" class="hidden">
+    <div class="admin-head">
+      <div><div class="eyebrow">Genç MÜSİAD</div><h1>Görüş Yönetimi</h1></div>
+      <button id="logout" class="btn secondary">Çıkış</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span>Toplam Üye</span><strong id="total">0</strong></div>
+      <div class="stat"><span>Cevaplayan</span><strong id="answered">0</strong></div>
+      <div class="stat"><span>Bekleyen</span><strong id="pending">0</strong></div>
+      <div class="stat"><span>Katılım</span><strong id="rate">0%</strong></div>
+    </div>
+
+    <div class="card admin-card">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Üye veya görüş ara…">
+        <select id="filter">
+          <option value="all">Tümü</option>
+          <option value="answered">Cevaplayanlar</option>
+          <option value="pending">Cevaplamayanlar</option>
+        </select>
+        <button id="csv" class="btn secondary">CSV İndir</button>
+        <button id="renew" class="btn">Seçilenlerin Linkini Yenile</button>
+      </div>
+      <div id="actionMsg" class="hint"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th class="check-col"><input id="selectAll" type="checkbox" aria-label="Tümünü seç"></th>
+            <th>Üye</th><th>Görüş</th><th>Gönderim</th><th>Kişisel Link</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
